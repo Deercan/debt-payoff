@@ -1,4 +1,4 @@
-public class CreditCard {
+public class CreditCard implements Comparable<CreditCard>{
 
     private String name;
     private double apr;
@@ -10,6 +10,15 @@ public class CreditCard {
         this.apr = apr;
         this.balance = balance;
 
+    }
+
+
+    public int compareTo(CreditCard other){
+        if(this.apr > other.apr){
+            return 1;
+        } else if (this.apr < other.apr){
+            return -1;
+        } else return 0;
     }
 
     public void setName(String name){
@@ -34,6 +43,15 @@ public class CreditCard {
 
     public double getBalance(){
         return balance;
+    }
+
+    public double monthlyInterest(){
+        return apr / 12 / 100 * balance;
+
+    }
+
+    public void accrueInterest(){
+        this.balance += monthlyInterest();
     }
 
     public String toString(){
